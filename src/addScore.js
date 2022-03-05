@@ -1,11 +1,13 @@
 import Score from './classScore.js';
-import scoreList from './scoreList.js';
+import { postScore } from './api.js';
 
 const addScore = () => {
-  const name = document.querySelector('#name').value;
+  const user = document.querySelector('#name').value;
   const score = document.querySelector('#score').value;
-  const newScore = new Score(name, score);
-  scoreList.push(newScore);
+  const newScore = new Score(user, score);
+  postScore(newScore);
+  document.querySelector('#name').value = '';
+  document.querySelector('#score').value = '';
 };
 
 export default addScore;

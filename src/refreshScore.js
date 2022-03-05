@@ -1,12 +1,14 @@
-import scoreList from './scoreList.js';
+import { getScores } from './api.js';
 
 const refreshScore = () => {
   let scoreTable = '';
-  scoreList.forEach((score) => {
-    scoreTable += `<p class="scores">${score.name}: ${score.score} points</p>`;
+  getScores().then((data) => {
+    data.result.forEach((score) => {
+      scoreTable += `<p class="scores">${score.user}: ${score.score} points</p>`;
+    });
+    const container = document.getElementById('container');
+    container.innerHTML = scoreTable;
   });
-  const container = document.getElementById('container');
-  container.innerHTML = scoreTable;
 };
 
 export default refreshScore;
